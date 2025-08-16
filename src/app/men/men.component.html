@@ -1,0 +1,229 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Breadcrumbs -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <nav class="flex text-sm text-gray-500">
+        <a href="#" class="hover:text-gray-700">Shoes</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-900">Men</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">Men's Collection</h1>
+          <p class="text-sm text-gray-600 mt-1">Discover the latest trends in men's fashion</p>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button class="flex items-center text-sm text-gray-600 hover:text-gray-900">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"></path>
+            </svg>
+            Hide Filters
+          </button>
+          <div class="relative">
+            <select class="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>Sort By</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest First</option>
+              <option>Most Popular</option>
+            </select>
+            <svg class="absolute right-2 top-3 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex gap-8">
+      <!-- Filters Sidebar -->
+      <div class="w-64 flex-shrink-0">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Filters</h3>
+          
+          <!-- Category -->
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-900 mb-3">Category</h4>
+            <div class="space-y-2">
+              <label class="flex items-center" *ngFor="let category of categories">
+                <input type="checkbox" 
+                       [checked]="selectedCategories.includes(category)"
+                       (change)="toggleCategory(category)"
+                       class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-2 text-sm text-gray-700">{{ category }}</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Gender -->
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-900 mb-3">Gender</h4>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input type="checkbox" checked class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-2 text-sm text-gray-700">Men (1)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Price Range -->
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-900 mb-3">Shop By Price</h4>
+            <div class="space-y-2">
+              <label class="flex items-center" *ngFor="let range of priceRanges">
+                <input type="checkbox" 
+                       [checked]="selectedPriceRanges.includes(range)"
+                       (change)="togglePriceRange(range)"
+                       class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-2 text-sm text-gray-700">{{ range }}</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Sale & Offers -->
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-900 mb-3">Sale & Offers</h4>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input type="checkbox" 
+                       [checked]="showOnSale"
+                       (change)="toggleOnSale()"
+                       class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-2 text-sm text-gray-700">On Sale</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" 
+                       [checked]="showNewArrivals"
+                       (change)="toggleNewArrivals()"
+                       class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                <span class="ml-2 text-sm text-gray-700">New Arrivals</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Size -->
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-900 mb-3">Size</h4>
+            <div class="grid grid-cols-3 gap-2">
+              <button *ngFor="let size of sizes" 
+                      (click)="toggleSize(size)"
+                      [class]="selectedSizes.includes(size) ? 'px-3 py-2 text-sm border-2 border-blue-500 text-blue-600 rounded' : 'px-3 py-2 text-sm border border-gray-300 rounded hover:border-blue-500 hover:text-blue-600'">
+                {{ size }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Color -->
+          <div class="mb-6">
+            <h4 class="text-sm font-medium text-gray-900 mb-3">Colour</h4>
+            <div class="grid grid-cols-4 gap-2">
+              <button *ngFor="let color of colors; let i = index" 
+                      (click)="toggleColor(color)"
+                      [class]="selectedColors.includes(color) ? 'w-8 h-8 rounded-full border-2 border-blue-500' : 'w-8 h-8 rounded-full border-2 border-gray-300 hover:border-blue-500'"
+                      [style.background-color]="getColorValue(color)">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="flex-1">
+        <!-- Loading State -->
+        <div *ngIf="(loading$ | async)" class="flex justify-center items-center py-20">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <span class="ml-3 text-lg text-gray-600">Loading products...</span>
+        </div>
+
+        <!-- Error State -->
+        <div *ngIf="(error$ | async) as error" class="text-center py-20">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
+            <div class="text-red-600 text-2xl mb-2">⚠️</div>
+            <h3 class="text-lg font-medium text-red-800 mb-2">Error Loading Products</h3>
+            <p class="text-red-600">{{ error.message || 'Something went wrong. Please try again later.' }}</p>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div *ngIf="!(loading$ | async) && !(error$ | async)" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div *ngFor="let product of filteredProducts" 
+               class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group">
+            
+            <!-- Product Image -->
+            <div class="relative overflow-hidden">
+                  <a [routerLink]="['/product', product.id]">
+              <img [src]="product.imageUrl || createFallbackImage(product.name)"
+                   [alt]="product.name"
+                   class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                   (error)="onImageError($event)"
+                   (load)="onImageLoad($event)">
+                  </a>
+              <!-- Just In Badge -->
+              <div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium">
+                Just In
+              </div>
+              
+              <!-- Wishlist Button -->
+              <button class="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Product Info -->
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-gray-900 mb-1">
+                {{ product.name }}
+              </h3>
+              
+              <p class="text-sm text-gray-600 mb-2">
+                Men's Shoes
+              </p>
+              
+              <p class="text-sm text-gray-500 mb-3">
+                1 Colour
+              </p>
+
+              <!-- Price -->
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <span class="text-lg font-bold text-gray-900">${{ product.price }}</span>
+                  <span class="text-sm text-gray-500 ml-2">MRP</span>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="flex space-x-2">
+                <!-- <button class="flex-1 bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium text-sm">
+                  Add to Bag
+                </button> -->
+                <button class="flex-1 bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium text-sm">
+                  <a [routerLink]="['/product', product.id]">View Details</a>
+                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="!(loading$ | async) && !(error$ | async) && filteredProducts.length === 0" 
+             class="text-center py-20">
+          <div class="bg-gray-50 rounded-lg p-12 max-w-md mx-auto">
+            <div class="text-gray-400 text-6xl mb-4">🛍️</div>
+            <h3 class="text-xl font-medium text-gray-900 mb-2">No Products Found</h3>
+            <p class="text-gray-600">We're currently updating our collection. Check back soon!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,12 @@
+.active {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+nav a {
+  transition: color 0.2s ease-in-out;
+  
+  &:hover {
+    color: #2563eb;
+  }
+}
